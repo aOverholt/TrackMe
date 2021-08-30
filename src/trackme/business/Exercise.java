@@ -7,36 +7,52 @@ package trackme.business;
 public class Exercise {
 
     // PROPERTIES
+    private int exerciseID;
     private String name;
-    private String type;
+    private int typeID;
+    private String typeName;
 
     
     
     // CONSTRUCTORS
-    public Exercise(String name, String type) {
+    public Exercise(int exerciseID, String name, int typeID, String typeName) {
+        this.exerciseID = exerciseID;
         this.name = name;
-        this.type = type;
+        this.typeID = typeID;
+        this.typeName = typeName;
     }
-    
-    
-    // GETTERS & SETTERS
+
+    // GETTERS
+    public int getExerciseID() {
+        return exerciseID;
+    }
     public String getName() {
         return name;
     }
-
+    public int getTypeID() {
+        return typeID;
+    }
+    public String getTypeName() {
+        return typeName;
+    }
+    
+    
+    // SETTERS
+    public void setExerciseID(int exerciseID) {
+        this.exerciseID = exerciseID;
+    }
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getType() {
-        return type;
+    public void setTypeID(int typeID) {
+        this.typeID = typeID;
     }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
     
    
+    
     // METHODS  
 
     
