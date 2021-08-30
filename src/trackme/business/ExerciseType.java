@@ -12,34 +12,34 @@ package trackme.business;
 public class ExerciseType {
 
     // PROPERTIES
-    private int id;
-    private String type;
+    private int typeID;
+    private String typeName;
     
     
     // CONSTRUCTORS
-    public ExerciseType(int id, String type) {
-        this.id = id;
-        this.type = type;
+    public ExerciseType(int typeID, String typeName) {
+        this.typeID = typeID;
+        this.typeName = typeName;
     }
     
     
     // GETTERS
-    public int getId() {
-        return id;
+    public int getTypeID() {
+        return typeID;
     }
 
-    public String getType() {
-        return type;
+    public String getTypeName() {
+        return typeName;
     }
     
     
     // SETTERS
-    public void setId(int id) {
-        this.id = id;
+    public void setTypeID(int typeID) {
+        this.typeID = typeID;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
     
     // METHODS  
