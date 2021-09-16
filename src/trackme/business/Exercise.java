@@ -15,11 +15,10 @@ public class Exercise {
     
     
     // CONSTRUCTORS
-    public Exercise(int exerciseID, String name, int typeID, String typeName) {
+    public Exercise(int exerciseID, String name, int typeID) {
         this.exerciseID = exerciseID;
         this.name = name;
         this.typeID = typeID;
-        this.typeName = typeName;
     }
 
     // GETTERS

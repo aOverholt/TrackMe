@@ -5,6 +5,8 @@
  */
 package trackme.business;
 
+import trackme.db.ExerciseDB;
+
 /**
  *
  * @author L. Andrew Overholt
@@ -15,7 +17,7 @@ public class WorkoutSession {
     private int sessionID;
     private String date;
     private int exerciseID;
-    private Exercise exerciseName;
+    private String exerciseName;
     private String duration;
     private int bodyWeight;
     private int averageHeartRate;
@@ -34,14 +36,13 @@ public class WorkoutSession {
      * TODO: add a method that gets the exercise name from the sessionID; might be better 
      *       to do this in the Exercise class
      */
+
     public WorkoutSession(int sessionID, String date, int exerciseID,
-                          Exercise exerciseName, String duration, int bodyWeight,
-                          int averageHeartRate, double distance, int weight,
-                          int sets, int reps) {
+                          String duration, int bodyWeight, int averageHeartRate,
+                          double distance, int weight, int sets, int reps) {
         this.sessionID = sessionID;
         this.date = date;
         this.exerciseID = exerciseID;
-        this.exerciseName = exerciseName;
         this.duration = duration;
         this.bodyWeight = bodyWeight;
         this.averageHeartRate = averageHeartRate;
@@ -49,7 +50,11 @@ public class WorkoutSession {
         this.weight = weight;
         this.sets = sets;
         this.reps = reps;
+        
+        ExerciseDB exerciseDB = new ExerciseDB();
+        this.exerciseName = exerciseDB.getName(String.valueOf(exerciseID));
     }
+    
     
     
     
@@ -63,7 +68,7 @@ public class WorkoutSession {
     public int getExerciseID() {
         return exerciseID;
     }
-    public Exercise getExerciseName() {
+    public String getExerciseName() {
         return exerciseName;
     }
     public String getDuration() {
@@ -100,7 +105,7 @@ public class WorkoutSession {
     public void setExerciseID(int exerciseID) {
         this.exerciseID = exerciseID;
     }
-    public void setExerciseName(Exercise exerciseName) {
+    public void setExerciseName(String exerciseName) {
         this.exerciseName = exerciseName;
     }
     public void setDuration(String duration) {

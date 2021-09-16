@@ -5,6 +5,13 @@
  */
 package trackme.ui;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import trackme.business.Exercise;
+import trackme.business.WorkoutSession;
+import trackme.db.ExerciseDB;
+import trackme.db.WorkoutSessionDB;
+
 /**
  *
  * @author L. Andrew Overholt
@@ -27,9 +34,11 @@ public class TrackMeForm extends javax.swing.JFrame {
 
         rBtnGroup_exerciseTypes = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel_exercises = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_Exercises = new javax.swing.JTable();
         lbl_exerciseName = new javax.swing.JLabel();
         txt_exerciseName = new javax.swing.JTextField();
         rBtn_cardio = new javax.swing.JRadioButton();
@@ -61,11 +70,39 @@ public class TrackMeForm extends javax.swing.JFrame {
         btn_save = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbl_Sessions = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Welcome to TrackMe!");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel3)
+                .addContainerGap(395, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Home", jPanel1);
+
+        tbl_Exercises.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -84,7 +121,7 @@ public class TrackMeForm extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_Exercises);
 
         lbl_exerciseName.setText("Exercise Name:");
 
@@ -104,6 +141,11 @@ public class TrackMeForm extends javax.swing.JFrame {
         rBtn_resistance.setText("Resistance");
 
         jButton1.setText("Add/Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Delete");
 
@@ -196,7 +238,7 @@ public class TrackMeForm extends javax.swing.JFrame {
 
         btn_delete.setText("Delete");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Sessions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -222,32 +264,33 @@ public class TrackMeForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setMinWidth(90);
-            jTable2.getColumnModel().getColumn(0).setPreferredWidth(95);
-            jTable2.getColumnModel().getColumn(0).setMaxWidth(100);
-            jTable2.getColumnModel().getColumn(2).setMinWidth(70);
-            jTable2.getColumnModel().getColumn(2).setPreferredWidth(75);
-            jTable2.getColumnModel().getColumn(2).setMaxWidth(80);
-            jTable2.getColumnModel().getColumn(3).setMinWidth(60);
-            jTable2.getColumnModel().getColumn(3).setPreferredWidth(65);
-            jTable2.getColumnModel().getColumn(3).setMaxWidth(70);
-            jTable2.getColumnModel().getColumn(4).setMinWidth(55);
-            jTable2.getColumnModel().getColumn(4).setPreferredWidth(60);
-            jTable2.getColumnModel().getColumn(4).setMaxWidth(65);
-            jTable2.getColumnModel().getColumn(5).setMinWidth(80);
-            jTable2.getColumnModel().getColumn(5).setPreferredWidth(85);
-            jTable2.getColumnModel().getColumn(5).setMaxWidth(90);
-            jTable2.getColumnModel().getColumn(6).setMinWidth(50);
-            jTable2.getColumnModel().getColumn(6).setPreferredWidth(55);
-            jTable2.getColumnModel().getColumn(6).setMaxWidth(60);
-            jTable2.getColumnModel().getColumn(7).setMinWidth(35);
-            jTable2.getColumnModel().getColumn(7).setPreferredWidth(40);
-            jTable2.getColumnModel().getColumn(7).setMaxWidth(45);
-            jTable2.getColumnModel().getColumn(8).setMinWidth(40);
-            jTable2.getColumnModel().getColumn(8).setPreferredWidth(45);
-            jTable2.getColumnModel().getColumn(8).setMaxWidth(50);
+        tbl_Sessions.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tbl_Sessions);
+        if (tbl_Sessions.getColumnModel().getColumnCount() > 0) {
+            tbl_Sessions.getColumnModel().getColumn(0).setMinWidth(90);
+            tbl_Sessions.getColumnModel().getColumn(0).setPreferredWidth(95);
+            tbl_Sessions.getColumnModel().getColumn(0).setMaxWidth(100);
+            tbl_Sessions.getColumnModel().getColumn(2).setMinWidth(70);
+            tbl_Sessions.getColumnModel().getColumn(2).setPreferredWidth(75);
+            tbl_Sessions.getColumnModel().getColumn(2).setMaxWidth(80);
+            tbl_Sessions.getColumnModel().getColumn(3).setMinWidth(60);
+            tbl_Sessions.getColumnModel().getColumn(3).setPreferredWidth(65);
+            tbl_Sessions.getColumnModel().getColumn(3).setMaxWidth(70);
+            tbl_Sessions.getColumnModel().getColumn(4).setMinWidth(55);
+            tbl_Sessions.getColumnModel().getColumn(4).setPreferredWidth(60);
+            tbl_Sessions.getColumnModel().getColumn(4).setMaxWidth(65);
+            tbl_Sessions.getColumnModel().getColumn(5).setMinWidth(80);
+            tbl_Sessions.getColumnModel().getColumn(5).setPreferredWidth(85);
+            tbl_Sessions.getColumnModel().getColumn(5).setMaxWidth(90);
+            tbl_Sessions.getColumnModel().getColumn(6).setMinWidth(50);
+            tbl_Sessions.getColumnModel().getColumn(6).setPreferredWidth(55);
+            tbl_Sessions.getColumnModel().getColumn(6).setMaxWidth(60);
+            tbl_Sessions.getColumnModel().getColumn(7).setMinWidth(35);
+            tbl_Sessions.getColumnModel().getColumn(7).setPreferredWidth(40);
+            tbl_Sessions.getColumnModel().getColumn(7).setMaxWidth(45);
+            tbl_Sessions.getColumnModel().getColumn(8).setMinWidth(40);
+            tbl_Sessions.getColumnModel().getColumn(8).setPreferredWidth(45);
+            tbl_Sessions.getColumnModel().getColumn(8).setMaxWidth(50);
         }
 
         javax.swing.GroupLayout jPanel_sessionsLayout = new javax.swing.GroupLayout(jPanel_sessions);
@@ -308,7 +351,6 @@ public class TrackMeForm extends javax.swing.JFrame {
             jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_sessionsLayout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_sessionsLayout.createSequentialGroup()
                         .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +410,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("jTabbedPane1");
@@ -380,6 +422,14 @@ public class TrackMeForm extends javax.swing.JFrame {
     private void txt_exerciseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_exerciseNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_exerciseNameActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        refresh();// TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -429,13 +479,13 @@ public class TrackMeForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_exercises;
     private javax.swing.JPanel jPanel_sessions;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lbl_averageHR;
     private javax.swing.JLabel lbl_bodyWeight;
     private javax.swing.JLabel lbl_date;
@@ -450,6 +500,8 @@ public class TrackMeForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton rBtn_bodyWeight;
     private javax.swing.JRadioButton rBtn_cardio;
     private javax.swing.JRadioButton rBtn_resistance;
+    private javax.swing.JTable tbl_Exercises;
+    private javax.swing.JTable tbl_Sessions;
     private javax.swing.JTextField txt_averageHR;
     private javax.swing.JTextField txt_bodyWeight;
     private javax.swing.JTextField txt_date;
@@ -462,5 +514,78 @@ public class TrackMeForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
+    /**
+     * =======================================================================
+     * @author L. Andrew Overholt  My code begins here
+     * =======================================================================
+     */
+    
+    private static ExerciseDB exerciseDB = new ExerciseDB();
+    private static WorkoutSessionDB workoutSessionDB = new WorkoutSessionDB();
+    /**
+     * Erases the text fields and refreshes the data in the table 
+     */
+    public void refresh() {
+        //clear();
+        
+        
+        /**
+         * refresh the Exercises table
+         */
+        ArrayList<Exercise> exercises = exerciseDB.getAll();
+        DefaultTableModel exercisesTableModel = (DefaultTableModel) tbl_Exercises.getModel();
+        exercisesTableModel.setRowCount(0);
+        
+        try {
+            for (Exercise e: exercises) {
+                exercisesTableModel.addRow(new Object[]{e.getName(), e.getTypeID()});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        int exercisesRowNum = exercisesTableModel.getRowCount();
+        
+        // Makes the table look nicer by having the white rows fill out the visible
+        // part instead of having grey space
+        while (exercisesRowNum < 18){
+            exercisesTableModel.addRow(new Object[] {"",""});
+            exercisesRowNum++;
+        }
+        
+        
+        /**
+         * refresh the Sessions table
+         */
+        ArrayList<WorkoutSession> sessions = workoutSessionDB.getAll();
+        DefaultTableModel sessionsTableModel = (DefaultTableModel) tbl_Sessions.getModel();
+        sessionsTableModel.setRowCount(0);
+        
+        try {
+            for (WorkoutSession s: sessions) {
+                sessionsTableModel.addRow(
+                        new Object[]{
+                            s.getDate(), s.getExerciseName(), s.getDuration(), s.getDistance(), 
+                            s.getAverageHeartRate(), s.getBodyWeight(), s.getWeight(), s.getSets(), s.getReps()
+                        });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        int sessionsRowNum = sessionsTableModel.getRowCount();
+        
+        // Makes the table look nicer by having the white rows fill out the visible
+        // part instead of having grey space
+        while (sessionsRowNum < 18){
+            sessionsTableModel.addRow(new Object[] {"","","","","","","","",""});
+            sessionsRowNum++;
+        }
+    }
+    
+    
+    /**
+     * =======================================================================
+     * @author L. Andrew Overholt  My code ends here
+     * =======================================================================
+     */
     
 }
