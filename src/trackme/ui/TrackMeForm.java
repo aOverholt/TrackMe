@@ -7,6 +7,7 @@ package trackme.ui;
 
 import java.util.ArrayList;
 import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import trackme.business.Exercise;
 import trackme.business.WorkoutSession;
@@ -463,11 +464,11 @@ public class TrackMeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_exe_NameActionPerformed
 
     private void btn_exe_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_addActionPerformed
-        // TODO add your handling code here:
+        addExercise();
     }//GEN-LAST:event_btn_exe_addActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        refresh();// TODO add your handling code here:
+        refresh();
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void btn_ses_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ses_updateActionPerformed
@@ -591,10 +592,23 @@ public class TrackMeForm extends javax.swing.JFrame {
      * ==================================================================================================================
      */
     
+    
+    
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////// VARIABLES
+    
     private static ExerciseDB exerciseDB = new ExerciseDB();
     private static WorkoutSessionDB workoutSessionDB = new WorkoutSessionDB();
     
-    private static String rb_exe_type = "Cardio"; // Cardio is selected by default
+    private static int rb_exe_type = 1; // Cardio is selected by default
+    
+    
+    
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////// METHODS
+    
     /**
      * Erases the text fields and refreshes the data in the table 
      */
@@ -662,13 +676,64 @@ public class TrackMeForm extends javax.swing.JFrame {
      * <p>Sets the variable "rb_exe_type" to the correct String</p>
      */
     public void refreshRadioButtonExeType(){
-        if (rBtn_exe_bodyWeight.isSelected()) {
-            rb_exe_type = "BodyWeight";
-        } else if (rBtn_exe_cardio.isSelected()) {
-            rb_exe_type = "Cardio";
+        if (rBtn_exe_cardio.isSelected()) {
+            rb_exe_type = 1;
+        } else if (rBtn_exe_bodyWeight.isSelected()) {
+            rb_exe_type = 2;
         } else if (rBtn_exe_resistance.isSelected()) {
-            rb_exe_type = "Resistance";
+            rb_exe_type = 3;
         }
+    }
+    
+    /**
+     * <h2>When is it called?</h2>
+     * When the "Add" button is clicked in the "Exercise" tab.
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Collect the data</li>
+     *  <li>Validate the data</li>
+     *  <li>Adds an exercise to the database</li>
+     *  <li>Calls the refresh method</li>
+     * </ol>
+     */
+    public void addExercise() {
+        
+        // Collect data and store in Variables
+        String eName = txt_exe_Name.getText(); // Exercises: Name of exercise
+        int eType = rb_exe_type; // Exercises: Type of exercise
+        
+        // Check that a name was entered, then try to add to database
+        if (eName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                                "You must enter a valid string!", 
+                                "Add Failure", 
+                                JOptionPane.ERROR_MESSAGE);
+        } else {
+              try {
+                  exerciseDB.add(eName, eType);
+              } catch (Exception e) {
+                  JOptionPane.showMessageDialog(this, 
+                                "There is already an exercise with this name!", 
+                                "Add Failure", 
+                                JOptionPane.ERROR_MESSAGE);
+              }
+        }
+        
+        // Refresh the table
+        refresh();
+        clear();
+    }
+
+    /**
+     * <h2>When is it called?</h2>
+     * Whenever the fields need to be cleared
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * Clears all the fields
+     */
+    private void clear() {
+        txt_exe_Name.setText("");
     }
     /**
      * ==================================================================================================================
