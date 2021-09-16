@@ -106,10 +106,23 @@ public class ExerciseDB implements DAO<Exercise>  {
         }
     }
 
-    // TODO: 
+    
+    
     @Override
     public boolean update(Exercise e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "UPDATE Exercises SET ExerciseName = ?, TypeID = ? "
+                   + "WHERE ExerciseID = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, e.getName());
+            ps.setInt(2, e.getTypeID());
+            ps.setInt(3, e.getExerciseID());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
     // TODO: 
@@ -118,9 +131,5 @@ public class ExerciseDB implements DAO<Exercise>  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean add(Exercise t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

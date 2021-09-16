@@ -767,8 +767,48 @@ public class TrackMeForm extends javax.swing.JFrame {
         
     }
     
+    /**
+     * <h2>When is it called?</h2>
+     * When the "Update" button is clicked in the Exercise tab
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Collect data from form</li>
+     *  <li>Use data to set Properties of selectedExercise</li>
+     *  <li>Sends the object to ExerciseDB's "Update" method</li>
+     *  <li>Refreshes the table</li>
+     * </ol>
+     */
     public void updateExercise() {
         
+        // Collect data and store in Variables
+        String eName = txt_exe_Name.getText(); // Exercises: Name of exercise
+        int eType = rb_exe_type; // Exercises: Type of exercise
+        boolean unique;
+        
+        // Check that a name was entered, then try to add to database
+        if (eName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                                "You must enter a valid string!", 
+                                "Update Failure", 
+                                JOptionPane.ERROR_MESSAGE);
+        } else {
+            selectedExercise.setName(eName);
+            selectedExercise.setTypeID(eType);
+            unique = exerciseDB.update(selectedExercise);
+            
+            //TODO FIX BUG: doesnt show error message when changing name to the same as another records name
+            if (!unique) {
+                JOptionPane.showMessageDialog(this, 
+                                "There is already an exercise with this name!", 
+                                "Update Failure", 
+                                JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        // Refresh the table
+        refresh();
+        clear();
     }
 
     /**
