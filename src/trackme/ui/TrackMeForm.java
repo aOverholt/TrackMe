@@ -44,9 +44,10 @@ public class TrackMeForm extends javax.swing.JFrame {
         rBtn_cardio = new javax.swing.JRadioButton();
         rBtn_bodyWeight = new javax.swing.JRadioButton();
         rBtn_resistance = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_exe_add = new javax.swing.JButton();
+        btn_exe_delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btn_exe_update = new javax.swing.JButton();
         jPanel_sessions = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lbl_date = new javax.swing.JLabel();
@@ -67,10 +68,11 @@ public class TrackMeForm extends javax.swing.JFrame {
         txt_reps = new javax.swing.JTextField();
         txt_distance = new javax.swing.JTextField();
         cmboBx_exerciseName = new javax.swing.JComboBox<>();
-        btn_save = new javax.swing.JButton();
-        btn_delete = new javax.swing.JButton();
+        btn_ses_add = new javax.swing.JButton();
+        btn_ses_delete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_Sessions = new javax.swing.JTable();
+        btn_ses_update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,17 +142,27 @@ public class TrackMeForm extends javax.swing.JFrame {
         rBtnGroup_exerciseTypes.add(rBtn_resistance);
         rBtn_resistance.setText("Resistance");
 
-        jButton1.setText("Add/Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_exe_add.setText("Add");
+        btn_exe_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_exe_addActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Delete");
+        btn_exe_delete.setText("Delete");
+        btn_exe_delete.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Manage Exercises");
+
+        btn_exe_update.setText("Update");
+        btn_exe_update.setEnabled(false);
+        btn_exe_update.setFocusable(false);
+        btn_exe_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exe_updateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_exercisesLayout = new javax.swing.GroupLayout(jPanel_exercises);
         jPanel_exercises.setLayout(jPanel_exercisesLayout);
@@ -174,8 +186,11 @@ public class TrackMeForm extends javax.swing.JFrame {
                                 .addComponent(rBtn_resistance)))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
+                            .addComponent(btn_exe_delete)
+                            .addGroup(jPanel_exercisesLayout.createSequentialGroup()
+                                .addComponent(btn_exe_add)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_exe_update)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel_exercisesLayout.createSequentialGroup()
@@ -191,13 +206,14 @@ public class TrackMeForm extends javax.swing.JFrame {
                 .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_exerciseName)
                     .addComponent(txt_exerciseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btn_exe_add)
+                    .addComponent(btn_exe_update))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rBtn_cardio)
                     .addComponent(rBtn_bodyWeight)
                     .addComponent(rBtn_resistance)
-                    .addComponent(jButton2))
+                    .addComponent(btn_exe_delete))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addContainerGap())
@@ -234,9 +250,9 @@ public class TrackMeForm extends javax.swing.JFrame {
 
         cmboBx_exerciseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btn_save.setText("Save");
+        btn_ses_add.setText("Add");
 
-        btn_delete.setText("Delete");
+        btn_ses_delete.setText("Delete");
 
         tbl_Sessions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -250,7 +266,7 @@ public class TrackMeForm extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false
@@ -292,6 +308,14 @@ public class TrackMeForm extends javax.swing.JFrame {
             tbl_Sessions.getColumnModel().getColumn(8).setPreferredWidth(45);
             tbl_Sessions.getColumnModel().getColumn(8).setMaxWidth(50);
         }
+
+        btn_ses_update.setText("Update");
+        btn_ses_update.setEnabled(false);
+        btn_ses_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ses_updateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_sessionsLayout = new javax.swing.GroupLayout(jPanel_sessions);
         jPanel_sessions.setLayout(jPanel_sessionsLayout);
@@ -338,8 +362,9 @@ public class TrackMeForm extends javax.swing.JFrame {
                         .addComponent(txt_bodyWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_ses_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ses_add, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ses_update, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel_sessionsLayout.createSequentialGroup()
@@ -353,28 +378,28 @@ public class TrackMeForm extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_sessionsLayout.createSequentialGroup()
-                        .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_sessionsLayout.createSequentialGroup()
-                                .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbl_date)
-                                    .addComponent(txt_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbl_sessionsExerciseName)
-                                    .addComponent(cmboBx_exerciseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbl_duration)
-                                    .addComponent(txt_duration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbl_distance)
-                                    .addComponent(txt_distance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel_sessionsLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(8, 8, 8)
+                        .addComponent(btn_ses_add, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_ses_update, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_ses_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_sessionsLayout.createSequentialGroup()
+                        .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_date)
+                            .addComponent(txt_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_sessionsExerciseName)
+                            .addComponent(cmboBx_exerciseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_duration)
+                            .addComponent(txt_duration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_distance)
+                            .addComponent(txt_distance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_averageHR)
@@ -395,7 +420,7 @@ public class TrackMeForm extends javax.swing.JFrame {
                         .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_reps)
                             .addComponent(txt_reps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -423,13 +448,21 @@ public class TrackMeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_exerciseNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_exe_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_addActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_exe_addActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         refresh();// TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void btn_ses_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ses_updateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ses_updateActionPerformed
+
+    private void btn_exe_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_updateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_exe_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -472,11 +505,13 @@ public class TrackMeForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_delete;
-    private javax.swing.JButton btn_save;
+    private javax.swing.JButton btn_exe_add;
+    private javax.swing.JButton btn_exe_delete;
+    private javax.swing.JButton btn_exe_update;
+    private javax.swing.JButton btn_ses_add;
+    private javax.swing.JButton btn_ses_delete;
+    private javax.swing.JButton btn_ses_update;
     private javax.swing.JComboBox<String> cmboBx_exerciseName;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -514,10 +549,20 @@ public class TrackMeForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
-     * =======================================================================
+     * ==================================================================================================================
      * @author L. Andrew Overholt  My code begins here
-     * =======================================================================
+     * ==================================================================================================================
      */
     
     private static ExerciseDB exerciseDB = new ExerciseDB();
@@ -575,7 +620,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         
         // Makes the table look nicer by having the white rows fill out the visible
         // part instead of having grey space
-        while (sessionsRowNum < 18){
+        while (sessionsRowNum < 13){
             sessionsTableModel.addRow(new Object[] {"","","","","","","","",""});
             sessionsRowNum++;
         }
@@ -583,9 +628,9 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     
     /**
-     * =======================================================================
+     * ==================================================================================================================
      * @author L. Andrew Overholt  My code ends here
-     * =======================================================================
+     * ==================================================================================================================
      */
     
 }

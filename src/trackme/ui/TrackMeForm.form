@@ -121,8 +121,12 @@
                               </Group>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_exe_delete" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="btn_exe_add" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btn_exe_update" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -144,14 +148,15 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbl_exerciseName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txt_exerciseName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_exe_add" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_exe_update" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="rBtn_cardio" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rBtn_bodyWeight" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rBtn_resistance" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_exe_delete" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="326" max="32767" attributes="0"/>
@@ -231,17 +236,18 @@
                 <Property name="text" type="java.lang.String" value="Resistance"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btn_exe_add">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add/Update"/>
+                <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_exe_addActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="btn_exe_delete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -251,6 +257,16 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Manage Exercises"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btn_exe_update">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_exe_updateActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -319,8 +335,9 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_delete" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="btn_save" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="btn_ses_delete" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="btn_ses_add" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="btn_ses_update" min="-2" pref="130" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   </Group>
@@ -337,35 +354,33 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lbl_date" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txt_date" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lbl_sessionsExerciseName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cmboBx_exerciseName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lbl_duration" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txt_duration" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lbl_distance" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txt_distance" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                      <Component id="btn_save" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btn_delete" min="-2" pref="50" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="btn_ses_add" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btn_ses_update" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btn_ses_delete" min="-2" pref="50" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_date" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_date" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_sessionsExerciseName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmboBx_exerciseName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_duration" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_duration" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lbl_distance" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_distance" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -373,7 +388,7 @@
                                   <Component id="txt_averageHR" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lbl_bodyWeight" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_bodyWeight" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -395,7 +410,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="225" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -496,12 +511,12 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_save">
+            <Component class="javax.swing.JButton" name="btn_ses_add">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Save"/>
+                <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_delete">
+            <Component class="javax.swing.JButton" name="btn_ses_delete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
@@ -520,12 +535,12 @@
                         <Column editable="false" title="Date" type="java.lang.String"/>
                         <Column editable="false" title="Exercise" type="java.lang.String"/>
                         <Column editable="false" title="Duration" type="java.lang.String"/>
-                        <Column editable="false" title="Distance" type="java.lang.Double"/>
-                        <Column editable="false" title="Avg HR" type="java.lang.Integer"/>
-                        <Column editable="false" title="Body Weight" type="java.lang.Integer"/>
-                        <Column editable="false" title="Weight" type="java.lang.Integer"/>
-                        <Column editable="false" title="Sets" type="java.lang.Integer"/>
-                        <Column editable="false" title="Reps" type="java.lang.Integer"/>
+                        <Column editable="false" title="Distance" type="java.lang.String"/>
+                        <Column editable="false" title="Avg HR" type="java.lang.String"/>
+                        <Column editable="false" title="Body Weight" type="java.lang.String"/>
+                        <Column editable="false" title="Weight" type="java.lang.String"/>
+                        <Column editable="false" title="Sets" type="java.lang.String"/>
+                        <Column editable="false" title="Reps" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -584,6 +599,15 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="btn_ses_update">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ses_updateActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
