@@ -52,7 +52,7 @@ public class ExerciseTypeDB implements DAO<ExerciseType>  {
         }
     }
 
-    @Override
+    
     public boolean add(ExerciseType t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

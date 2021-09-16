@@ -60,7 +60,7 @@ public class WorkoutSessionDB implements DAO<WorkoutSession> {
         }
     }
 
-    @Override
+    
     public boolean add(WorkoutSession t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
