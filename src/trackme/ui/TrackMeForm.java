@@ -6,7 +6,6 @@
 package trackme.ui;
 
 import java.util.ArrayList;
-import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import trackme.business.Exercise;
@@ -120,9 +119,21 @@ public class TrackMeForm extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_Exercises.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_exe_onRecordClick(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_Exercises);
@@ -476,7 +487,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ses_updateActionPerformed
 
     private void btn_exe_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_updateActionPerformed
-        // TODO add your handling code here:
+        updateExercise();
     }//GEN-LAST:event_btn_exe_updateActionPerformed
 
     private void rBtn_exe_cardioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtn_exe_cardioActionPerformed
@@ -490,6 +501,10 @@ public class TrackMeForm extends javax.swing.JFrame {
     private void rBtn_exe_resistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtn_exe_resistanceActionPerformed
         refreshRadioButtonExeType();
     }//GEN-LAST:event_rBtn_exe_resistanceActionPerformed
+
+    private void tbl_exe_onRecordClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_exe_onRecordClick
+        displayExercise();
+    }//GEN-LAST:event_tbl_exe_onRecordClick
 
     /**
      * @param args the command line arguments
@@ -599,9 +614,12 @@ public class TrackMeForm extends javax.swing.JFrame {
     ////////////////////////////////////////////////////////////////////////////////// VARIABLES
     
     private static ExerciseDB exerciseDB = new ExerciseDB();
+    ArrayList<Exercise> exercises = exerciseDB.getAll();
     private static WorkoutSessionDB workoutSessionDB = new WorkoutSessionDB();
+    ArrayList<WorkoutSession> sessions = workoutSessionDB.getAll();
     
     private static int rb_exe_type = 1; // Cardio is selected by default
+    private static Exercise selectedExercise;
     
     
     
@@ -619,7 +637,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         /**
          * refresh the Exercises table
          */
-        ArrayList<Exercise> exercises = exerciseDB.getAll();
+        exercises = exerciseDB.getAll();
         DefaultTableModel exercisesTableModel = (DefaultTableModel) tbl_Exercises.getModel();
         exercisesTableModel.setRowCount(0);
         
@@ -639,11 +657,10 @@ public class TrackMeForm extends javax.swing.JFrame {
             exercisesRowNum++;
         }
         
-        
         /**
          * refresh the Sessions table
          */
-        ArrayList<WorkoutSession> sessions = workoutSessionDB.getAll();
+        sessions = workoutSessionDB.getAll();
         DefaultTableModel sessionsTableModel = (DefaultTableModel) tbl_Sessions.getModel();
         sessionsTableModel.setRowCount(0);
         
@@ -723,6 +740,35 @@ public class TrackMeForm extends javax.swing.JFrame {
         // Refresh the table
         refresh();
         clear();
+    }
+    
+    /**
+     * <h2>When is it called?</h2>
+     * When a record is clicked in the Exercise table
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Gets the selected row number</li>
+     *  <li>Gets the correct object using the row number</li>
+     *  <li>Sets the Values in the form using the objects properties</li>
+     * </ol>
+     */
+    public void displayExercise() {
+        int rowNum = tbl_Exercises.getSelectedRow(); // get the selected row number
+        selectedExercise = exercises.get(rowNum); // set the selectedExercise using the rowNum
+        
+        txt_exe_Name.setText(selectedExercise.getName());
+        rb_exe_type = selectedExercise.getTypeID();
+        switch (rb_exe_type) {
+            case 1 -> rBtn_exe_cardio.setSelected(true);
+            case 2 -> rBtn_exe_bodyWeight.setSelected(true);
+            case 3 -> rBtn_exe_resistance.setSelected(true);
+        }
+        
+    }
+    
+    public void updateExercise() {
+        
     }
 
     /**
