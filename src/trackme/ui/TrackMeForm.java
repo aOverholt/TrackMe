@@ -6,6 +6,7 @@
 package trackme.ui;
 
 import java.util.ArrayList;
+import javax.swing.ButtonModel;
 import javax.swing.table.DefaultTableModel;
 import trackme.business.Exercise;
 import trackme.business.WorkoutSession;
@@ -40,10 +41,10 @@ public class TrackMeForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Exercises = new javax.swing.JTable();
         lbl_exerciseName = new javax.swing.JLabel();
-        txt_exerciseName = new javax.swing.JTextField();
-        rBtn_cardio = new javax.swing.JRadioButton();
-        rBtn_bodyWeight = new javax.swing.JRadioButton();
-        rBtn_resistance = new javax.swing.JRadioButton();
+        txt_exe_Name = new javax.swing.JTextField();
+        rBtn_exe_cardio = new javax.swing.JRadioButton();
+        rBtn_exe_bodyWeight = new javax.swing.JRadioButton();
+        rBtn_exe_resistance = new javax.swing.JRadioButton();
         btn_exe_add = new javax.swing.JButton();
         btn_exe_delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -127,20 +128,36 @@ public class TrackMeForm extends javax.swing.JFrame {
 
         lbl_exerciseName.setText("Exercise Name:");
 
-        txt_exerciseName.addActionListener(new java.awt.event.ActionListener() {
+        txt_exe_Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_exerciseNameActionPerformed(evt);
+                txt_exe_NameActionPerformed(evt);
             }
         });
 
-        rBtnGroup_exerciseTypes.add(rBtn_cardio);
-        rBtn_cardio.setText("Cardio");
+        rBtnGroup_exerciseTypes.add(rBtn_exe_cardio);
+        rBtn_exe_cardio.setSelected(true);
+        rBtn_exe_cardio.setText("Cardio");
+        rBtn_exe_cardio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBtn_exe_cardioActionPerformed(evt);
+            }
+        });
 
-        rBtnGroup_exerciseTypes.add(rBtn_bodyWeight);
-        rBtn_bodyWeight.setText("Body Weight");
+        rBtnGroup_exerciseTypes.add(rBtn_exe_bodyWeight);
+        rBtn_exe_bodyWeight.setText("Body Weight");
+        rBtn_exe_bodyWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBtn_exe_bodyWeightActionPerformed(evt);
+            }
+        });
 
-        rBtnGroup_exerciseTypes.add(rBtn_resistance);
-        rBtn_resistance.setText("Resistance");
+        rBtnGroup_exerciseTypes.add(rBtn_exe_resistance);
+        rBtn_exe_resistance.setText("Resistance");
+        rBtn_exe_resistance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBtn_exe_resistanceActionPerformed(evt);
+            }
+        });
 
         btn_exe_add.setText("Add");
         btn_exe_add.addActionListener(new java.awt.event.ActionListener() {
@@ -150,13 +167,11 @@ public class TrackMeForm extends javax.swing.JFrame {
         });
 
         btn_exe_delete.setText("Delete");
-        btn_exe_delete.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Manage Exercises");
 
         btn_exe_update.setText("Update");
-        btn_exe_update.setEnabled(false);
         btn_exe_update.setFocusable(false);
         btn_exe_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,13 +192,13 @@ public class TrackMeForm extends javax.swing.JFrame {
                             .addGroup(jPanel_exercisesLayout.createSequentialGroup()
                                 .addComponent(lbl_exerciseName)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_exerciseName))
+                                .addComponent(txt_exe_Name))
                             .addGroup(jPanel_exercisesLayout.createSequentialGroup()
-                                .addComponent(rBtn_cardio)
+                                .addComponent(rBtn_exe_cardio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rBtn_bodyWeight)
+                                .addComponent(rBtn_exe_bodyWeight)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rBtn_resistance)))
+                                .addComponent(rBtn_exe_resistance)))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_exe_delete)
@@ -205,14 +220,14 @@ public class TrackMeForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_exerciseName)
-                    .addComponent(txt_exerciseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_exe_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_exe_add)
                     .addComponent(btn_exe_update))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rBtn_cardio)
-                    .addComponent(rBtn_bodyWeight)
-                    .addComponent(rBtn_resistance)
+                    .addComponent(rBtn_exe_cardio)
+                    .addComponent(rBtn_exe_bodyWeight)
+                    .addComponent(rBtn_exe_resistance)
                     .addComponent(btn_exe_delete))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
@@ -310,7 +325,6 @@ public class TrackMeForm extends javax.swing.JFrame {
         }
 
         btn_ses_update.setText("Update");
-        btn_ses_update.setEnabled(false);
         btn_ses_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ses_updateActionPerformed(evt);
@@ -444,9 +458,9 @@ public class TrackMeForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_exerciseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_exerciseNameActionPerformed
+    private void txt_exe_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_exe_NameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_exerciseNameActionPerformed
+    }//GEN-LAST:event_txt_exe_NameActionPerformed
 
     private void btn_exe_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_addActionPerformed
         // TODO add your handling code here:
@@ -463,6 +477,18 @@ public class TrackMeForm extends javax.swing.JFrame {
     private void btn_exe_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_updateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_exe_updateActionPerformed
+
+    private void rBtn_exe_cardioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtn_exe_cardioActionPerformed
+        refreshRadioButtonExeType();
+    }//GEN-LAST:event_rBtn_exe_cardioActionPerformed
+
+    private void rBtn_exe_bodyWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtn_exe_bodyWeightActionPerformed
+        refreshRadioButtonExeType();
+    }//GEN-LAST:event_rBtn_exe_bodyWeightActionPerformed
+
+    private void rBtn_exe_resistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtn_exe_resistanceActionPerformed
+        refreshRadioButtonExeType();
+    }//GEN-LAST:event_rBtn_exe_resistanceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -532,9 +558,9 @@ public class TrackMeForm extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_sets;
     private javax.swing.JLabel lbl_weight;
     private javax.swing.ButtonGroup rBtnGroup_exerciseTypes;
-    private javax.swing.JRadioButton rBtn_bodyWeight;
-    private javax.swing.JRadioButton rBtn_cardio;
-    private javax.swing.JRadioButton rBtn_resistance;
+    private javax.swing.JRadioButton rBtn_exe_bodyWeight;
+    private javax.swing.JRadioButton rBtn_exe_cardio;
+    private javax.swing.JRadioButton rBtn_exe_resistance;
     private javax.swing.JTable tbl_Exercises;
     private javax.swing.JTable tbl_Sessions;
     private javax.swing.JTextField txt_averageHR;
@@ -542,7 +568,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     private javax.swing.JTextField txt_date;
     private javax.swing.JTextField txt_distance;
     private javax.swing.JTextField txt_duration;
-    private javax.swing.JTextField txt_exerciseName;
+    private javax.swing.JTextField txt_exe_Name;
     private javax.swing.JTextField txt_reps;
     private javax.swing.JTextField txt_sets;
     private javax.swing.JTextField txt_weight;
@@ -567,6 +593,8 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     private static ExerciseDB exerciseDB = new ExerciseDB();
     private static WorkoutSessionDB workoutSessionDB = new WorkoutSessionDB();
+    
+    private static String rb_exe_type = "Cardio"; // Cardio is selected by default
     /**
      * Erases the text fields and refreshes the data in the table 
      */
@@ -626,7 +654,22 @@ public class TrackMeForm extends javax.swing.JFrame {
         }
     }
     
-    
+    /**
+     * <h2>When is it called?</h2>
+     * <p>Every time a radio button in the "rBtnGroup_exerciseTypes" is clicked.</p>
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <p>Sets the variable "rb_exe_type" to the correct String</p>
+     */
+    public void refreshRadioButtonExeType(){
+        if (rBtn_exe_bodyWeight.isSelected()) {
+            rb_exe_type = "BodyWeight";
+        } else if (rBtn_exe_cardio.isSelected()) {
+            rb_exe_type = "Cardio";
+        } else if (rBtn_exe_resistance.isSelected()) {
+            rb_exe_type = "Resistance";
+        }
+    }
     /**
      * ==================================================================================================================
      * @author L. Andrew Overholt  My code ends here

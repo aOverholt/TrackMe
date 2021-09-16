@@ -109,14 +109,14 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lbl_exerciseName" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txt_exerciseName" max="32767" attributes="0"/>
+                                      <Component id="txt_exe_Name" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="rBtn_cardio" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rBtn_exe_cardio" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="rBtn_bodyWeight" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rBtn_exe_bodyWeight" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="rBtn_resistance" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rBtn_exe_resistance" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -147,15 +147,15 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbl_exerciseName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_exerciseName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_exe_Name" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn_exe_add" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn_exe_update" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="rBtn_cardio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rBtn_bodyWeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="rBtn_resistance" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rBtn_exe_cardio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rBtn_exe_bodyWeight" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rBtn_exe_resistance" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn_exe_delete" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -207,34 +207,44 @@
                 <Property name="text" type="java.lang.String" value="Exercise Name:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_exerciseName">
+            <Component class="javax.swing.JTextField" name="txt_exe_Name">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_exerciseNameActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_exe_NameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rBtn_cardio">
+            <Component class="javax.swing.JRadioButton" name="rBtn_exe_cardio">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rBtnGroup_exerciseTypes"/>
                 </Property>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Cardio"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rBtn_exe_cardioActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rBtn_bodyWeight">
+            <Component class="javax.swing.JRadioButton" name="rBtn_exe_bodyWeight">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rBtnGroup_exerciseTypes"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Body Weight"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rBtn_exe_bodyWeightActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rBtn_resistance">
+            <Component class="javax.swing.JRadioButton" name="rBtn_exe_resistance">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rBtnGroup_exerciseTypes"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Resistance"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rBtn_exe_resistanceActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_exe_add">
               <Properties>
@@ -247,7 +257,6 @@
             <Component class="javax.swing.JButton" name="btn_exe_delete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -261,7 +270,6 @@
             <Component class="javax.swing.JButton" name="btn_exe_update">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
@@ -602,7 +610,6 @@
             <Component class="javax.swing.JButton" name="btn_ses_update">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ses_updateActionPerformed"/>
