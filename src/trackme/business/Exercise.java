@@ -21,6 +21,8 @@ public class Exercise {
         this.typeID = typeID;
     }
 
+    
+    
     // GETTERS
     public int getExerciseID() {
         return exerciseID;
@@ -35,7 +37,6 @@ public class Exercise {
         return typeName;
     }
     
-    
     // SETTERS
     public void setExerciseID(int exerciseID) {
         this.exerciseID = exerciseID;
@@ -49,12 +50,4 @@ public class Exercise {
     public void setTypeName(String typeName) {
         this.typeName = typeName;
     }
-    
-   
-    
-    // METHODS  
-
-    
-    
-    
 }
