@@ -59,7 +59,13 @@ public class ExerciseDB implements DAO<Exercise>  {
         }
     }
     
-    
+    /**
+     * <h2>When is it called?</h2>
+     * When you want to get a list of all the exercises in the database
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * Gets a list of all the exercises in the database
+     */
     // TODO: 
     @Override
     public ArrayList<Exercise> getAll() {
@@ -107,7 +113,13 @@ public class ExerciseDB implements DAO<Exercise>  {
     }
 
     
-    
+    /**
+     * <h2>When is it called?</h2>
+     * When you want to update an exercise in the database
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * Updates an exercise that's already in the database
+     */
     @Override
     public boolean update(Exercise e) {
         String sql = "UPDATE Exercises SET ExerciseName = ?, TypeID = ? "
@@ -125,10 +137,26 @@ public class ExerciseDB implements DAO<Exercise>  {
         }
     }
 
-    // TODO: 
+    /**
+     * <h2>When is it called?</h2>
+     * When you want to delete an exercise from the database
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * Deletes an exercise that's already in the database
+     */
     @Override
     public boolean delete(Exercise e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "DELETE FROM trackme.Exercises "
+                   + "WHERE ExerciseID = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, e.getExerciseID());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
     

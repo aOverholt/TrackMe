@@ -179,6 +179,11 @@ public class TrackMeForm extends javax.swing.JFrame {
         });
 
         btn_exe_delete.setText("Delete");
+        btn_exe_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exe_deleteActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Manage Exercises");
@@ -506,6 +511,10 @@ public class TrackMeForm extends javax.swing.JFrame {
         displayExercise();
     }//GEN-LAST:event_tbl_exe_onRecordClick
 
+    private void btn_exe_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_deleteActionPerformed
+        deleteExercise();
+    }//GEN-LAST:event_btn_exe_deleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -810,6 +819,24 @@ public class TrackMeForm extends javax.swing.JFrame {
         refresh();
         clear();
     }
+    
+    /**
+     * <h2>When is it called?</h2>
+     * When the "Delete" button is clicked in the Exercise tab
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Removes the selectedExercise from exercises</li>
+     *  <li>Refreshes the table</li>
+     * </ol>
+     */
+    public void deleteExercise() {
+        exerciseDB.delete(selectedExercise);
+        
+        // Refresh the table
+        refresh();
+        clear();
+    }
 
     /**
      * <h2>When is it called?</h2>
@@ -821,6 +848,10 @@ public class TrackMeForm extends javax.swing.JFrame {
     private void clear() {
         txt_exe_Name.setText("");
     }
+    
+    
+    
+    
     /**
      * ==================================================================================================================
      * @author L. Andrew Overholt  My code ends here

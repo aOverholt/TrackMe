@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/business/Exercise.java</file>
-            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/.git/config</file>
-            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/business/ExerciseType.java</file>
-            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/db/ExerciseDB.java</file>
-            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/db/WorkoutSessionDB.java</file>
             <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/db/ExerciseTypeDB.java</file>
             <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/ui/TrackMeForm.java</file>
-            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/business/WorkoutSession.java</file>
+            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/db/ExerciseDB.java</file>
+            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/business/ExerciseType.java</file>
+            <file>file:/Users/Andrew/NetBeansProjects/TrackMe/src/trackme/business/Exercise.java</file>
         </group>
     </open-files>
 </project-private>
