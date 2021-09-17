@@ -6,6 +6,7 @@
 package trackme.ui;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import trackme.business.Exercise;
@@ -77,6 +78,8 @@ public class TrackMeForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(170, 27));
+        jTabbedPane1.setSize(new java.awt.Dimension(170, 27));
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
@@ -93,14 +96,14 @@ public class TrackMeForm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(371, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Home", jPanel1);
@@ -203,7 +206,7 @@ public class TrackMeForm extends javax.swing.JFrame {
             .addGroup(jPanel_exercisesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
                     .addGroup(jPanel_exercisesLayout.createSequentialGroup()
                         .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel_exercisesLayout.createSequentialGroup()
@@ -247,7 +250,7 @@ public class TrackMeForm extends javax.swing.JFrame {
                     .addComponent(rBtn_exe_resistance)
                     .addComponent(btn_exe_delete))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -280,9 +283,14 @@ public class TrackMeForm extends javax.swing.JFrame {
 
         txt_distance.setToolTipText("Miles");
 
-        cmboBx_exerciseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmboBx_exerciseName.setMaximumSize(new java.awt.Dimension(170, 27));
 
         btn_ses_add.setText("Add");
+        btn_ses_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ses_addActionPerformed(evt);
+            }
+        });
 
         btn_ses_delete.setText("Delete");
 
@@ -373,7 +381,7 @@ public class TrackMeForm extends javax.swing.JFrame {
                     .addGroup(jPanel_sessionsLayout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(txt_date, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel_sessionsLayout.createSequentialGroup()
                         .addComponent(lbl_reps)
@@ -420,9 +428,9 @@ public class TrackMeForm extends javax.swing.JFrame {
                             .addComponent(lbl_date)
                             .addComponent(txt_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_sessionsExerciseName)
-                            .addComponent(cmboBx_exerciseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmboBx_exerciseName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_duration)
@@ -451,7 +459,7 @@ public class TrackMeForm extends javax.swing.JFrame {
                         .addGroup(jPanel_sessionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_reps)
                             .addComponent(txt_reps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -462,11 +470,11 @@ public class TrackMeForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("jTabbedPane1");
@@ -514,6 +522,10 @@ public class TrackMeForm extends javax.swing.JFrame {
     private void btn_exe_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_deleteActionPerformed
         deleteExercise();
     }//GEN-LAST:event_btn_exe_deleteActionPerformed
+
+    private void btn_ses_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ses_addActionPerformed
+//        addSession();
+    }//GEN-LAST:event_btn_ses_addActionPerformed
 
     /**
      * @param args the command line arguments
@@ -641,8 +653,23 @@ public class TrackMeForm extends javax.swing.JFrame {
      * Erases the text fields and refreshes the data in the table 
      */
     private void refresh() {
-        //clear();
         
+        /**
+         * refresh the Exercises ComboBox
+         */
+        DefaultComboBoxModel cmbboxmodel = (DefaultComboBoxModel) cmboBx_exerciseName.getModel();
+        cmbboxmodel.removeAllElements(); // without this line, the list just gets longer and longer evertime it refreshes
+        
+        // An array of the names of the exercises
+        String[] exerciseNames = new String[exercises.size()];
+        // populate the array of names
+        for (int i = 0; i < exercises.size(); i++) {
+            exerciseNames[i] = exercises.get(i).getName();
+        }
+        // use the array of names to populate the combobox
+        for (String exerciseName: exerciseNames) {
+            cmbboxmodel.addElement(exerciseName);
+        }
         
         /**
          * refresh the Exercises table
@@ -837,6 +864,138 @@ public class TrackMeForm extends javax.swing.JFrame {
 
     
     ////////////////////////////////////////  WORKOUT SESSION SPECIFIC METHODS
+    
+//    /**
+//     * <h2>When is it called?</h2>
+//     * When the "Add" button is clicked in the "Sessions" tab.
+//     * <br><br>
+//     * <h2>What does it do?</h2>
+//     * <ol>
+//     *  <li>Collect the data</li>
+//     *  <li>Validate the data</li>
+//     *  <li>Adds a session to the database</li>
+//     *  <li>Calls the refresh method</li>
+//     * </ol>
+//     */
+//    private void addSession() {
+//        
+//        // Collect data and store in Variables
+//        String date;
+//        String exercise;
+//        
+//        
+//        
+//        
+//        
+//        // Check that a name was entered, then try to add to database
+//        if (eName.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, 
+//                                "You must enter a valid string!", 
+//                                "Add Failure", 
+//                                JOptionPane.ERROR_MESSAGE);
+//        } else {
+//              try {
+//                  exerciseDB.add(eName, eType);
+//              } catch (Exception e) {
+//                  JOptionPane.showMessageDialog(this, 
+//                                "There is already an exercise with this name!", 
+//                                "Add Failure", 
+//                                JOptionPane.ERROR_MESSAGE);
+//              }
+//        }
+//        
+//        // Refresh the table
+//        refresh();
+//        clear();
+//    }
+//    
+//    /**
+//     * <h2>When is it called?</h2>
+//     * When a record is clicked in the Exercise table
+//     * <br><br>
+//     * <h2>What does it do?</h2>
+//     * <ol>
+//     *  <li>Gets the selected row number</li>
+//     *  <li>Gets the correct object using the row number</li>
+//     *  <li>Sets the Values in the form using the objects properties</li>
+//     * </ol>
+//     */
+//    private void displaySession() {
+//        int rowNum = tbl_Exercises.getSelectedRow(); // get the selected row number
+//        selectedExercise = exercises.get(rowNum); // set the selectedExercise using the rowNum
+//        
+//        txt_exe_Name.setText(selectedExercise.getName());
+//        rb_exe_type = selectedExercise.getTypeID();
+//        switch (rb_exe_type) {
+//            case 1 -> rBtn_exe_cardio.setSelected(true);
+//            case 2 -> rBtn_exe_bodyWeight.setSelected(true);
+//            case 3 -> rBtn_exe_resistance.setSelected(true);
+//        }
+//        
+//    }
+//    
+//    /**
+//     * <h2>When is it called?</h2>
+//     * When the "Update" button is clicked in the Exercise tab
+//     * <br><br>
+//     * <h2>What does it do?</h2>
+//     * <ol>
+//     *  <li>Collect data from form</li>
+//     *  <li>Use data to set Properties of selectedExercise</li>
+//     *  <li>Sends the object to ExerciseDB's "Update" method</li>
+//     *  <li>Refreshes the table</li>
+//     * </ol>
+//     */
+//    private void updateSession() {
+//        
+//        // Collect data and store in Variables
+//        String eName = txt_exe_Name.getText(); // Exercises: Name of exercise
+//        int eType = rb_exe_type; // Exercises: Type of exercise
+//        boolean unique;
+//        
+//        // Check that a name was entered, then try to add to database
+//        if (eName.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, 
+//                                "You must enter a valid string!", 
+//                                "Update Failure", 
+//                                JOptionPane.ERROR_MESSAGE);
+//        } else {
+//            selectedExercise.setName(eName);
+//            selectedExercise.setTypeID(eType);
+//            unique = exerciseDB.update(selectedExercise);
+//            
+//            //TODO FIX BUG: doesnt show error message when changing name to the same as another records name
+//            if (!unique) {
+//                JOptionPane.showMessageDialog(this, 
+//                                "There is already an exercise with this name!", 
+//                                "Update Failure", 
+//                                JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//        
+//        // Refresh the table
+//        refresh();
+//        clear();
+//    }
+//    
+//    /**
+//     * <h2>When is it called?</h2>
+//     * When the "Delete" button is clicked in the Exercise tab
+//     * <br><br>
+//     * <h2>What does it do?</h2>
+//     * <ol>
+//     *  <li>Removes the selectedExercise from exercises</li>
+//     *  <li>Refreshes the table</li>
+//     * </ol>
+//     */
+//    private void deleteSession() {
+//        exerciseDB.delete(selectedExercise);
+//        
+//        // Refresh the table
+//        refresh();
+//        clear();
+//    }
+    
     
     
     
