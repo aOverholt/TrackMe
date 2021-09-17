@@ -25,12 +25,11 @@ public class ExerciseDB implements DAO<Exercise>  {
     }
 
     
-    // TODO: Is used to prevent the same exercise name from being added twice
-    public boolean exists(String name) {
-        return false;
-    }
+//    // TODO: Is used to prevent the same exercise name from being added twice
+//    public boolean exists(String name) {
+//        return false;
+//    }
     
-    // TODO: 
     @Override
     public Exercise get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -72,7 +71,6 @@ public class ExerciseDB implements DAO<Exercise>  {
      * <h2>What does it do?</h2>
      * Gets a list of all the exercises in the database
      */
-    // TODO: 
     @Override
     public ArrayList<Exercise> getAll() {
         String sql = "SELECT ExerciseID, ExerciseName, TypeID "
@@ -118,7 +116,6 @@ public class ExerciseDB implements DAO<Exercise>  {
         }
     }
 
-    
     /**
      * <h2>When is it called?</h2>
      * When you want to update an exercise in the database
@@ -128,7 +125,8 @@ public class ExerciseDB implements DAO<Exercise>  {
      */
     @Override
     public boolean update(Exercise e) {
-        String sql = "UPDATE Exercises SET ExerciseName = ?, TypeID = ? "
+        String sql = "UPDATE Exercises "
+                   + "SET ExerciseName = ?, TypeID = ? "
                    + "WHERE ExerciseID = ?";
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
