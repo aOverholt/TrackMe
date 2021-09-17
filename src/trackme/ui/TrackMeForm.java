@@ -624,6 +624,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     private static ExerciseDB exerciseDB = new ExerciseDB();
     ArrayList<Exercise> exercises = exerciseDB.getAll();
+    
     private static WorkoutSessionDB workoutSessionDB = new WorkoutSessionDB();
     ArrayList<WorkoutSession> sessions = workoutSessionDB.getAll();
     
@@ -704,6 +705,8 @@ public class TrackMeForm extends javax.swing.JFrame {
     private void clear() {
         txt_exe_Name.setText("");
     }
+    
+    ////////////////////////////////////////  EXERCISE SPECIFIC METHODS
     
     /**
      * <h2>When is it called?</h2>
@@ -832,6 +835,8 @@ public class TrackMeForm extends javax.swing.JFrame {
         clear();
     }
 
+    
+    ////////////////////////////////////////  WORKOUT SESSION SPECIFIC METHODS
     
     
     
