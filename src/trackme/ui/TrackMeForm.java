@@ -496,15 +496,15 @@ public class TrackMeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exe_updateActionPerformed
 
     private void rBtn_exe_cardioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtn_exe_cardioActionPerformed
-        refreshRadioButtonExeType();
+        rb_exe_type = 1;
     }//GEN-LAST:event_rBtn_exe_cardioActionPerformed
 
     private void rBtn_exe_bodyWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtn_exe_bodyWeightActionPerformed
-        refreshRadioButtonExeType();
+        rb_exe_type = 2;
     }//GEN-LAST:event_rBtn_exe_bodyWeightActionPerformed
 
     private void rBtn_exe_resistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtn_exe_resistanceActionPerformed
-        refreshRadioButtonExeType();
+        rb_exe_type = 3;
     }//GEN-LAST:event_rBtn_exe_resistanceActionPerformed
 
     private void tbl_exe_onRecordClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_exe_onRecordClick
@@ -691,23 +691,6 @@ public class TrackMeForm extends javax.swing.JFrame {
         while (sessionsRowNum < 13){
             sessionsTableModel.addRow(new Object[] {"","","","","","","","",""});
             sessionsRowNum++;
-        }
-    }
-    
-    /**
-     * <h2>When is it called?</h2>
-     * <p>Every time a radio button in the "rBtnGroup_exerciseTypes" is clicked.</p>
-     * <br><br>
-     * <h2>What does it do?</h2>
-     * <p>Sets the variable "rb_exe_type" to the correct String</p>
-     */
-    public void refreshRadioButtonExeType(){
-        if (rBtn_exe_cardio.isSelected()) {
-            rb_exe_type = 1;
-        } else if (rBtn_exe_bodyWeight.isSelected()) {
-            rb_exe_type = 2;
-        } else if (rBtn_exe_resistance.isSelected()) {
-            rb_exe_type = 3;
         }
     }
     
