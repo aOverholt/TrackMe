@@ -639,7 +639,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     /**
      * Erases the text fields and refreshes the data in the table 
      */
-    public void refresh() {
+    private void refresh() {
         //clear();
         
         
@@ -696,6 +696,17 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     /**
      * <h2>When is it called?</h2>
+     * Whenever the fields need to be cleared
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * Clears all the fields
+     */
+    private void clear() {
+        txt_exe_Name.setText("");
+    }
+    
+    /**
+     * <h2>When is it called?</h2>
      * When the "Add" button is clicked in the "Exercise" tab.
      * <br><br>
      * <h2>What does it do?</h2>
@@ -706,7 +717,7 @@ public class TrackMeForm extends javax.swing.JFrame {
      *  <li>Calls the refresh method</li>
      * </ol>
      */
-    public void addExercise() {
+    private void addExercise() {
         
         // Collect data and store in Variables
         String eName = txt_exe_Name.getText(); // Exercises: Name of exercise
@@ -745,7 +756,7 @@ public class TrackMeForm extends javax.swing.JFrame {
      *  <li>Sets the Values in the form using the objects properties</li>
      * </ol>
      */
-    public void displayExercise() {
+    private void displayExercise() {
         int rowNum = tbl_Exercises.getSelectedRow(); // get the selected row number
         selectedExercise = exercises.get(rowNum); // set the selectedExercise using the rowNum
         
@@ -771,7 +782,7 @@ public class TrackMeForm extends javax.swing.JFrame {
      *  <li>Refreshes the table</li>
      * </ol>
      */
-    public void updateExercise() {
+    private void updateExercise() {
         
         // Collect data and store in Variables
         String eName = txt_exe_Name.getText(); // Exercises: Name of exercise
@@ -813,7 +824,7 @@ public class TrackMeForm extends javax.swing.JFrame {
      *  <li>Refreshes the table</li>
      * </ol>
      */
-    public void deleteExercise() {
+    private void deleteExercise() {
         exerciseDB.delete(selectedExercise);
         
         // Refresh the table
@@ -821,17 +832,6 @@ public class TrackMeForm extends javax.swing.JFrame {
         clear();
     }
 
-    /**
-     * <h2>When is it called?</h2>
-     * Whenever the fields need to be cleared
-     * <br><br>
-     * <h2>What does it do?</h2>
-     * Clears all the fields
-     */
-    private void clear() {
-        txt_exe_Name.setText("");
-    }
-    
     
     
     
