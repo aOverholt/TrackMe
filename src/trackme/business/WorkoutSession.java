@@ -29,13 +29,6 @@ public class WorkoutSession {
     
     
     // CONSTRUCTORS
-    /*
-     * TODO: add a method that gets the sessionID of the last object in the list of 
-     *       workout sessions, then adds 1 to it, then uses that for the next sessionID
-     * 
-     * TODO: add a method that gets the exercise name from the sessionID; might be better 
-     *       to do this in the Exercise class
-     */
     public WorkoutSession(int sessionID, String date, int exerciseID,
                           String duration, int bodyWeight, int averageHeartRate,
                           double distance, int weight, int sets, int reps) {
@@ -91,8 +84,6 @@ public class WorkoutSession {
     public int getReps() {
         return reps;
     }
-    
-    
     
     // SETTERS
     public void setSessionID(int sessionID) {
