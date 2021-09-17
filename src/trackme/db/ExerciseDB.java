@@ -36,14 +36,20 @@ public class ExerciseDB implements DAO<Exercise>  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    public String getName(String id) {
+    /**
+     * <h2>When is it called?</h2>
+     * When you want to get the name of an exercise by using the exerciseID
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * Returns a string containing the Exercise Name
+     */
+    public String getName(int id) {
         String sql = "SELECT ExerciseName "
                    + "FROM Exercises "
                    + "WHERE ExerciseID = ?";
         try (Connection connection = getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String name = rs.getString("ExerciseName");

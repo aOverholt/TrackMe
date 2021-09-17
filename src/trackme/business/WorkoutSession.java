@@ -36,7 +36,6 @@ public class WorkoutSession {
      * TODO: add a method that gets the exercise name from the sessionID; might be better 
      *       to do this in the Exercise class
      */
-
     public WorkoutSession(int sessionID, String date, int exerciseID,
                           String duration, int bodyWeight, int averageHeartRate,
                           double distance, int weight, int sets, int reps) {
@@ -52,7 +51,7 @@ public class WorkoutSession {
         this.reps = reps;
         
         ExerciseDB exerciseDB = new ExerciseDB();
-        this.exerciseName = exerciseDB.getName(String.valueOf(exerciseID));
+        this.exerciseName = exerciseDB.getName(exerciseID);
     }
     
     
