@@ -29,6 +29,7 @@ public class WorkoutSession {
     
     
     // CONSTRUCTORS
+    // This one will be used when getting WorkoutSessions from the database
     public WorkoutSession(int sessionID, String date, int exerciseID,
                           String duration, int bodyWeight, int averageHeartRate,
                           double distance, int weight, int sets, int reps) {
@@ -45,6 +46,21 @@ public class WorkoutSession {
         
         ExerciseDB exerciseDB = new ExerciseDB();
         this.exerciseName = exerciseDB.getName(exerciseID);
+    }
+    
+    // This one will be used to create an object which will be sent to the database to create a new Workout Session
+    public WorkoutSession(String date, int exerciseID,
+                          String duration, int bodyWeight, int averageHeartRate,
+                          double distance, int weight, int sets, int reps) {
+        this.date = date;
+        this.exerciseID = exerciseID;
+        this.duration = duration;
+        this.bodyWeight = bodyWeight;
+        this.averageHeartRate = averageHeartRate;
+        this.distance = distance;
+        this.weight = weight;
+        this.sets = sets;
+        this.reps = reps;
     }
     
     

@@ -524,7 +524,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exe_deleteActionPerformed
 
     private void btn_ses_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ses_addActionPerformed
-//        addSession();
+        addSession();
     }//GEN-LAST:event_btn_ses_addActionPerformed
 
     /**
@@ -731,6 +731,14 @@ public class TrackMeForm extends javax.swing.JFrame {
      */
     private void clear() {
         txt_exe_Name.setText("");
+        txt_date.setText("");
+        txt_duration.setText("");
+        txt_distance.setText("");
+        txt_averageHR.setText("");
+        txt_bodyWeight.setText("");
+        txt_weight.setText("");
+        txt_sets.setText("");
+        txt_reps.setText("");
     }
     
     ////////////////////////////////////////  EXERCISE SPECIFIC METHODS
@@ -865,49 +873,47 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     ////////////////////////////////////////  WORKOUT SESSION SPECIFIC METHODS
     
-//    /**
-//     * <h2>When is it called?</h2>
-//     * When the "Add" button is clicked in the "Sessions" tab.
-//     * <br><br>
-//     * <h2>What does it do?</h2>
-//     * <ol>
-//     *  <li>Collect the data</li>
-//     *  <li>Validate the data</li>
-//     *  <li>Adds a session to the database</li>
-//     *  <li>Calls the refresh method</li>
-//     * </ol>
-//     */
-//    private void addSession() {
-//        
-//        // Collect data and store in Variables
-//        String date;
-//        String exercise;
-//        
-//        
-//        
-//        
-//        
-//        // Check that a name was entered, then try to add to database
-//        if (eName.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, 
-//                                "You must enter a valid string!", 
-//                                "Add Failure", 
-//                                JOptionPane.ERROR_MESSAGE);
-//        } else {
-//              try {
-//                  exerciseDB.add(eName, eType);
-//              } catch (Exception e) {
-//                  JOptionPane.showMessageDialog(this, 
-//                                "There is already an exercise with this name!", 
-//                                "Add Failure", 
-//                                JOptionPane.ERROR_MESSAGE);
-//              }
-//        }
-//        
-//        // Refresh the table
-//        refresh();
-//        clear();
-//    }
+    /**
+     * <h2>When is it called?</h2>
+     * When the "Add" button is clicked in the "Sessions" tab.
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Collect the data</li>
+     *  <li>Validate the data</li>
+     *  <li>Adds a session to the database</li>
+     *  <li>Calls the refresh method</li>
+     * </ol>
+     */
+    private void addSession() {
+        boolean valid = true;
+        
+        // Collect data and store in Variables
+        String date = txt_date.getText();
+        String duration = txt_duration.getText();
+        int bodyweight = Integer.parseInt(txt_bodyWeight.getText());
+        int avgHR = Integer.parseInt(txt_averageHR.getText());
+        double distance = Double.parseDouble(txt_distance.getText());
+        int weight = Integer.parseInt(txt_weight.getText());
+        int sets = Integer.parseInt(txt_sets.getText());
+        int reps = Integer.parseInt(txt_reps.getText());
+        
+        // get the selected exercise's id
+        int selectedIndex = cmboBx_exerciseName.getSelectedIndex();
+        Exercise selectedExercise = exercises.get(selectedIndex);
+        int exerciseId = selectedExercise.getExerciseID();
+        
+        // Create a WorkoutSession object
+        WorkoutSession ws = new WorkoutSession(date, exerciseId, duration, bodyweight, avgHR, distance, weight, sets, reps);
+        
+        // Add object to the database
+        workoutSessionDB.add(ws);
+        
+        
+        // Refresh the table and clear the fields
+        refresh();
+        clear();
+    }
 //    
 //    /**
 //     * <h2>When is it called?</h2>
