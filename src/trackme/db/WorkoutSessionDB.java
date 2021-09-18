@@ -89,9 +89,36 @@ public class WorkoutSessionDB implements DAO<WorkoutSession> {
         }
     }
 
+    /**
+     * <h2>When is it called?</h2>
+     * When you want to update a workout session in the database
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * Updates a workout session that's already in the database
+     */
     @Override
-    public boolean update(WorkoutSession t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(WorkoutSession s) {
+        String sql = "UPDATE WorkoutSessions "
+                   + "SET Date = ?, ExerciseID = ?, Duration = ? , BodyWeight = ? , AverageHeartRate = ? , Distance = ? , Weight = ? , Sets = ? , Reps = ?  "
+                   + "WHERE SessionID = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, s.getDate());
+            ps.setInt(2, s.getExerciseID());
+            ps.setString(3, s.getDuration());
+            ps.setInt(4, s.getBodyWeight());
+            ps.setInt(5, s.getAverageHeartRate());
+            ps.setDouble(6, s.getDistance());
+            ps.setInt(7, s.getWeight());
+            ps.setInt(8, s.getSets());
+            ps.setInt(9, s.getReps());
+            ps.setInt(10, s.getSessionID());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
 
     @Override

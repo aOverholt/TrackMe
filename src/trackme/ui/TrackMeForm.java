@@ -501,7 +501,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void btn_ses_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ses_updateActionPerformed
-        // TODO add your handling code here:
+        updateSession();
     }//GEN-LAST:event_btn_ses_updateActionPerformed
 
     private void btn_exe_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_updateActionPerformed
@@ -958,50 +958,63 @@ public class TrackMeForm extends javax.swing.JFrame {
         }
     }
     
-//    /**
-//     * <h2>When is it called?</h2>
-//     * When the "Update" button is clicked in the Exercise tab
-//     * <br><br>
-//     * <h2>What does it do?</h2>
-//     * <ol>
-//     *  <li>Collect data from form</li>
-//     *  <li>Use data to set Properties of selectedExercise</li>
-//     *  <li>Sends the object to ExerciseDB's "Update" method</li>
-//     *  <li>Refreshes the table</li>
-//     * </ol>
-//     */
-//    private void updateSession() {
-//        
-//        // Collect data and store in Variables
-//        String eName = txt_exe_Name.getText(); // Exercises: Name of exercise
-//        int eType = rb_exe_type; // Exercises: Type of exercise
-//        boolean unique;
-//        
-//        // Check that a name was entered, then try to add to database
-//        if (eName.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, 
-//                                "You must enter a valid string!", 
-//                                "Update Failure", 
-//                                JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            selectedExercise.setName(eName);
-//            selectedExercise.setTypeID(eType);
-//            unique = exerciseDB.update(selectedExercise);
-//            
-//            //TODO FIX BUG: doesnt show error message when changing name to the same as another records name
-//            if (!unique) {
-//                JOptionPane.showMessageDialog(this, 
-//                                "There is already an exercise with this name!", 
-//                                "Update Failure", 
-//                                JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
-//        
-//        // Refresh the table
-//        refresh();
-//        clear();
-//    }
-//    
+    /**
+     * <h2>When is it called?</h2>
+     * When the "Update" button is clicked in the Sessions tab
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Finds out which record the user clicked on (selectedSession)</li>
+     *  <li>Collect data from form</li>
+     *  <li>Use data to set Properties of selectedSession</li>
+     *  <li>Sends the object to ExerciseDB's "Update" method</li>
+     *  <li>Refreshes the table</li>
+     * </ol>
+     */
+    private void updateSession() {
+        
+        // Collect data and store in Variables
+        String date = txt_date.getText();
+        String duration = txt_duration.getText();
+        int bodyweight = Integer.parseInt(txt_bodyWeight.getText());
+        int avgHR = Integer.parseInt(txt_averageHR.getText());
+        double distance = Double.parseDouble(txt_distance.getText());
+        int weight = Integer.parseInt(txt_weight.getText());
+        int sets = Integer.parseInt(txt_sets.getText());
+        int reps = Integer.parseInt(txt_reps.getText());
+        
+        // get the selected exercise's id
+        int selectedIndex = cmboBx_exerciseName.getSelectedIndex();
+        Exercise selectedExercise = exercises.get(selectedIndex);
+        int exerciseId = selectedExercise.getExerciseID();
+        
+        
+        // Check that a name was entered, then try to add to database
+        if (date.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                                "You must enter a valid date!", 
+                                "Update Failure", 
+                                JOptionPane.ERROR_MESSAGE);
+        } else {
+            selectedSession.setDate(date);
+            selectedSession.setDuration(duration);
+            selectedSession.setBodyWeight(bodyweight);
+            selectedSession.setAverageHeartRate(avgHR);
+            selectedSession.setDistance(distance);
+            selectedSession.setWeight(weight);
+            selectedSession.setSets(sets);
+            selectedSession.setReps(reps);
+            selectedSession.setExerciseID(exerciseId);
+            
+            // Update the database with the updated information
+            workoutSessionDB.update(selectedSession);
+        }
+        
+        // Refresh the table
+        refresh();
+        clear();
+    }
+    
 //    /**
 //     * <h2>When is it called?</h2>
 //     * When the "Delete" button is clicked in the Exercise tab
