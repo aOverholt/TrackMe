@@ -321,6 +321,11 @@ public class TrackMeForm extends javax.swing.JFrame {
             }
         });
         tbl_Sessions.getTableHeader().setReorderingAllowed(false);
+        tbl_Sessions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_ses_onRecordClick(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbl_Sessions);
         if (tbl_Sessions.getColumnModel().getColumnCount() > 0) {
             tbl_Sessions.getColumnModel().getColumn(0).setMinWidth(90);
@@ -527,6 +532,10 @@ public class TrackMeForm extends javax.swing.JFrame {
         addSession();
     }//GEN-LAST:event_btn_ses_addActionPerformed
 
+    private void tbl_ses_onRecordClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ses_onRecordClick
+        displaySession();
+    }//GEN-LAST:event_tbl_ses_onRecordClick
+
     /**
      * @param args the command line arguments
      */
@@ -642,6 +651,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     private static int rb_exe_type = 1; // Cardio is selected by default
     private static Exercise selectedExercise;
+    private static WorkoutSession selectedSession;
     
     
     
@@ -914,32 +924,40 @@ public class TrackMeForm extends javax.swing.JFrame {
         refresh();
         clear();
     }
-//    
-//    /**
-//     * <h2>When is it called?</h2>
-//     * When a record is clicked in the Exercise table
-//     * <br><br>
-//     * <h2>What does it do?</h2>
-//     * <ol>
-//     *  <li>Gets the selected row number</li>
-//     *  <li>Gets the correct object using the row number</li>
-//     *  <li>Sets the Values in the form using the objects properties</li>
-//     * </ol>
-//     */
-//    private void displaySession() {
-//        int rowNum = tbl_Exercises.getSelectedRow(); // get the selected row number
-//        selectedExercise = exercises.get(rowNum); // set the selectedExercise using the rowNum
-//        
-//        txt_exe_Name.setText(selectedExercise.getName());
-//        rb_exe_type = selectedExercise.getTypeID();
-//        switch (rb_exe_type) {
-//            case 1 -> rBtn_exe_cardio.setSelected(true);
-//            case 2 -> rBtn_exe_bodyWeight.setSelected(true);
-//            case 3 -> rBtn_exe_resistance.setSelected(true);
-//        }
-//        
-//    }
-//    
+    
+    /**
+     * <h2>When is it called?</h2>
+     * When a record is clicked in the Exercise Sessions table
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Gets the selected row number</li>
+     *  <li>Gets the correct object using the row number</li>
+     *  <li>Sets the Values in the form using the objects properties</li>
+     * </ol>
+     */
+    private void displaySession() {
+        int rowNum = tbl_Sessions.getSelectedRow(); // get the selected row number
+        selectedSession = sessions.get(rowNum); // set the selectedSession using the rowNum
+        
+        // Set all text fields
+        txt_date.setText(selectedSession.getDate());
+        txt_duration.setText(selectedSession.getDuration());
+        txt_distance.setText(String.valueOf(selectedSession.getDistance()));
+        txt_averageHR.setText(String.valueOf(selectedSession.getAverageHeartRate()));
+        txt_bodyWeight.setText(String.valueOf(selectedSession.getBodyWeight()));
+        txt_weight.setText(String.valueOf(selectedSession.getWeight()));
+        txt_sets.setText(String.valueOf(selectedSession.getSets()));
+        txt_reps.setText(String.valueOf(selectedSession.getReps()));
+        
+        // Set the comboBox to the correct exercise
+        for (int i = 0; i < exercises.size(); i++) {
+            if (exercises.get(i).getExerciseID() == selectedSession.getExerciseID()) {
+                cmboBx_exerciseName.setSelectedIndex(i);
+            }
+        }
+    }
+    
 //    /**
 //     * <h2>When is it called?</h2>
 //     * When the "Update" button is clicked in the Exercise tab
