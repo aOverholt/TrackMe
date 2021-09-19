@@ -25,11 +25,6 @@ public class ExerciseDB implements DAO<Exercise>  {
     }
 
     
-//    // TODO: Is used to prevent the same exercise name from being added twice
-//    public boolean exists(String name) {
-//        return false;
-//    }
-    
     @Override
     public Exercise get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
