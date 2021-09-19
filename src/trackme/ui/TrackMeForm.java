@@ -762,6 +762,8 @@ public class TrackMeForm extends javax.swing.JFrame {
         txt_reps.setText("");
     }
     
+    
+    
     ////////////////////////////////////////  EXERCISE SPECIFIC METHODS
     
     /**
@@ -781,7 +783,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         // Collect data and store in Variables
         String eName = txt_exe_Name.getText(); // Exercises: Name of exercise
         int eType = rb_exe_type; // Exercises: Type of exercise
-        boolean valid = true;
+        boolean valid;
         
         // Validate the entry
         valid = validateExercise(eName);
@@ -791,7 +793,7 @@ public class TrackMeForm extends javax.swing.JFrame {
               try {
                   exerciseDB.add(eName, eType);
               } catch (Exception e) {
-                  e.printStackTrace();
+                  System.err.println(e);
               }
         }
         
@@ -838,29 +840,22 @@ public class TrackMeForm extends javax.swing.JFrame {
      * </ol>
      */
     private void updateExercise() {
-        
         // Collect data and store in Variables
         String eName = txt_exe_Name.getText(); // Exercises: Name of exercise
         int eType = rb_exe_type; // Exercises: Type of exercise
-        boolean unique;
+        boolean valid;
         
-        // Check that a name was entered, then try to add to database
-        if (eName.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                                "You must enter a valid string!", 
-                                "Update Failure", 
-                                JOptionPane.ERROR_MESSAGE);
-        } else {
+        // Validate the entry
+        valid = validateExercise(eName);
+        
+        // If it passed Validation, try to update database
+        if (valid) {
             selectedExercise.setName(eName);
             selectedExercise.setTypeID(eType);
-            unique = exerciseDB.update(selectedExercise);
-            
-            //TODO FIX BUG: doesnt show error message when changing name to the same as another records name
-            if (!unique) {
-                JOptionPane.showMessageDialog(this, 
-                                "There is already an exercise with this name!", 
-                                "Update Failure", 
-                                JOptionPane.ERROR_MESSAGE);
+            try {
+                exerciseDB.update(selectedExercise);
+            } catch (Exception e) {
+                System.err.println(e);
             }
         }
         
@@ -886,6 +881,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         refresh();
         clear();
     }
+    
     
     ///////////////////  Validation
     
