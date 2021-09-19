@@ -293,6 +293,11 @@ public class TrackMeForm extends javax.swing.JFrame {
         });
 
         btn_ses_delete.setText("Delete");
+        btn_ses_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ses_deleteActionPerformed(evt);
+            }
+        });
 
         tbl_Sessions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -535,6 +540,12 @@ public class TrackMeForm extends javax.swing.JFrame {
     private void tbl_ses_onRecordClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_ses_onRecordClick
         displaySession();
     }//GEN-LAST:event_tbl_ses_onRecordClick
+
+    private void btn_ses_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ses_deleteActionPerformed
+        deleteSession();
+        
+        
+    }//GEN-LAST:event_btn_ses_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1015,23 +1026,23 @@ public class TrackMeForm extends javax.swing.JFrame {
         clear();
     }
     
-//    /**
-//     * <h2>When is it called?</h2>
-//     * When the "Delete" button is clicked in the Exercise tab
-//     * <br><br>
-//     * <h2>What does it do?</h2>
-//     * <ol>
-//     *  <li>Removes the selectedExercise from exercises</li>
-//     *  <li>Refreshes the table</li>
-//     * </ol>
-//     */
-//    private void deleteSession() {
-//        exerciseDB.delete(selectedExercise);
-//        
-//        // Refresh the table
-//        refresh();
-//        clear();
-//    }
+    /**
+     * <h2>When is it called?</h2>
+     * When the "Delete" button is clicked in the Sessions tab
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Removes the selectedSession from WorkoutSessions</li>
+     *  <li>Refreshes the table</li>
+     * </ol>
+     */
+    private void deleteSession() {
+        workoutSessionDB.delete(selectedSession);
+        
+        // Refresh the table
+        refresh();
+        clear();
+    }
     
     
     

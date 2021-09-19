@@ -121,9 +121,26 @@ public class WorkoutSessionDB implements DAO<WorkoutSession> {
         }
     }
 
+    /**
+     * <h2>When is it called?</h2>
+     * When you want to delete a workout session from the database
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * Deletes a workout session that's already in the database
+     */
     @Override
-    public boolean delete(WorkoutSession t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(WorkoutSession s) {
+        String sql = "DELETE FROM WorkoutSessions "
+                   + "WHERE SessionID = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, s.getSessionID());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return false;
+        }
     }
     
 }
