@@ -52,6 +52,11 @@ public class TrackMeForm extends javax.swing.JFrame {
         btn_exe_delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_exe_update = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        cmboBox_exerciseType = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        btn_exe_filter = new javax.swing.JButton();
+        btn_exe_clearFilter = new javax.swing.JButton();
         jPanel_sessions = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lbl_date = new javax.swing.JLabel();
@@ -105,7 +110,7 @@ public class TrackMeForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
-                .addContainerGap(371, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Home", jPanel1);
@@ -201,38 +206,75 @@ public class TrackMeForm extends javax.swing.JFrame {
             }
         });
 
+        cmboBox_exerciseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmboBox_exerciseType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmboBox_exerciseTypeActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel4.setText("Filter:");
+
+        btn_exe_filter.setText("Filter");
+        btn_exe_filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exe_filterActionPerformed(evt);
+            }
+        });
+
+        btn_exe_clearFilter.setText("Clear Filter");
+        btn_exe_clearFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exe_clearFilterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_exercisesLayout = new javax.swing.GroupLayout(jPanel_exercises);
         jPanel_exercises.setLayout(jPanel_exercisesLayout);
         jPanel_exercisesLayout.setHorizontalGroup(
             jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_exercisesLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
                     .addGroup(jPanel_exercisesLayout.createSequentialGroup()
-                        .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel_exercisesLayout.createSequentialGroup()
-                                .addComponent(lbl_exerciseName)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_exe_Name))
-                            .addGroup(jPanel_exercisesLayout.createSequentialGroup()
-                                .addComponent(rBtn_exe_cardio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rBtn_exe_bodyWeight)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rBtn_exe_resistance)))
-                        .addGap(37, 37, 37)
+                        .addContainerGap()
                         .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_exe_delete)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
                             .addGroup(jPanel_exercisesLayout.createSequentialGroup()
-                                .addComponent(btn_exe_add)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_exe_update)))
+                                .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel_exercisesLayout.createSequentialGroup()
+                                        .addComponent(lbl_exerciseName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_exe_Name))
+                                    .addGroup(jPanel_exercisesLayout.createSequentialGroup()
+                                        .addComponent(rBtn_exe_cardio)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rBtn_exe_bodyWeight)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rBtn_exe_resistance)))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_exe_delete)
+                                    .addGroup(jPanel_exercisesLayout.createSequentialGroup()
+                                        .addComponent(btn_exe_add)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_exe_update)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jSeparator1)
+                    .addGroup(jPanel_exercisesLayout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel_exercisesLayout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmboBox_exerciseType, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_exe_filter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_exe_clearFilter)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_exercisesLayout.setVerticalGroup(
@@ -251,8 +293,16 @@ public class TrackMeForm extends javax.swing.JFrame {
                     .addComponent(rBtn_exe_bodyWeight)
                     .addComponent(rBtn_exe_resistance)
                     .addComponent(btn_exe_delete))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_exercisesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cmboBox_exerciseType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_exe_filter)
+                    .addComponent(btn_exe_clearFilter))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -286,6 +336,11 @@ public class TrackMeForm extends javax.swing.JFrame {
         txt_distance.setToolTipText("Miles");
 
         cmboBx_exerciseName.setMaximumSize(new java.awt.Dimension(170, 27));
+        cmboBx_exerciseName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmboBx_exerciseNameActionPerformed(evt);
+            }
+        });
 
         btn_ses_add.setText("Add");
         btn_ses_add.addActionListener(new java.awt.event.ActionListener() {
@@ -549,6 +604,22 @@ public class TrackMeForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_ses_deleteActionPerformed
 
+    private void cmboBox_exerciseTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboBox_exerciseTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmboBox_exerciseTypeActionPerformed
+
+    private void btn_exe_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_filterActionPerformed
+        filterExerciseByType();
+    }//GEN-LAST:event_btn_exe_filterActionPerformed
+
+    private void cmboBx_exerciseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboBx_exerciseNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmboBx_exerciseNameActionPerformed
+
+    private void btn_exe_clearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exe_clearFilterActionPerformed
+        refresh();
+    }//GEN-LAST:event_btn_exe_clearFilterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -591,20 +662,25 @@ public class TrackMeForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_exe_add;
+    private javax.swing.JButton btn_exe_clearFilter;
     private javax.swing.JButton btn_exe_delete;
+    private javax.swing.JButton btn_exe_filter;
     private javax.swing.JButton btn_exe_update;
     private javax.swing.JButton btn_ses_add;
     private javax.swing.JButton btn_ses_delete;
     private javax.swing.JButton btn_ses_update;
+    private javax.swing.JComboBox<String> cmboBox_exerciseType;
     private javax.swing.JComboBox<String> cmboBx_exerciseName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_exercises;
     private javax.swing.JPanel jPanel_sessions;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbl_averageHR;
     private javax.swing.JLabel lbl_bodyWeight;
@@ -672,7 +748,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     
     
-    
+
     
     ////////////////////////////////////////////////////////////////////////////////// METHODS
     
@@ -681,6 +757,24 @@ public class TrackMeForm extends javax.swing.JFrame {
      */
     private void refresh() {
         
+        /**
+         * Populate the Exercise Types ComboBox
+         */
+        DefaultComboBoxModel typeCmbboxModel = (DefaultComboBoxModel) cmboBox_exerciseType.getModel();
+        typeCmbboxModel.removeAllElements(); // without this line, the list just gets longer and longer evertime it refreshes
+
+        // An array of the names of the exercise types
+        String[] typeNames = new String[exerciseTypes.size()];
+        // populate the array of names
+        for (int i = 0; i < exerciseTypes.size(); i++) {
+            typeNames[i] = exerciseTypes.get(i).getTypeName();
+        }
+        // use the array of names to populate the combobox
+        for (String typeName: typeNames) {
+            typeCmbboxModel.addElement(typeName);
+        }
+    
+    
         /**
          * refresh the Exercises ComboBox
          */
@@ -716,7 +810,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         
         // Makes the table look nicer by having the white rows fill out the visible
         // part instead of having grey space
-        while (exercisesRowNum < 18){
+        while (exercisesRowNum < 16){
             exercisesTableModel.addRow(new Object[] {"",""});
             exercisesRowNum++;
         }
@@ -886,6 +980,43 @@ public class TrackMeForm extends javax.swing.JFrame {
         // Refresh the table
         refresh();
         clear();
+    }
+    
+    /**
+     * <h2>When is it called?</h2>
+     * When the "Filter" button is clicked in the Exercises tab
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Gets the selected exercise type</li>
+     *  <li>Populates the table with only the exercises that match the selected type</li>
+     * </ol>
+     */
+    private void filterExerciseByType() {
+        
+        // Get selected exercise type's id
+        int selectedIndex = cmboBox_exerciseType.getSelectedIndex();
+        ExerciseType selectedExerciseType = exerciseTypes.get(selectedIndex);
+        int exerciseTypeId = selectedExerciseType.getTypeID();
+        
+        DefaultTableModel exercisesTableModel = (DefaultTableModel) tbl_Exercises.getModel();
+        exercisesTableModel.setRowCount(0);
+        
+        // Only show Exercises of correct type
+        for (Exercise e: exercises) {
+            if (exerciseTypeId == e.getTypeID()) {
+                exercisesTableModel.addRow(new Object[]{e.getName(), exerciseTypes.get(e.getTypeID()-1).getTypeName()});
+            }
+        }
+        
+        int exercisesRowNum = exercisesTableModel.getRowCount();
+        
+        // Makes the table look nicer by having the white rows fill out the visible
+        // part instead of having grey space
+        while (exercisesRowNum < 16){
+            exercisesTableModel.addRow(new Object[] {"",""});
+            exercisesRowNum++;
+        }
     }
     
     
