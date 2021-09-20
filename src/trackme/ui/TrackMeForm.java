@@ -10,8 +10,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import trackme.business.Exercise;
+import trackme.business.ExerciseType;
 import trackme.business.WorkoutSession;
 import trackme.db.ExerciseDB;
+import trackme.db.ExerciseTypeDB;
 import trackme.db.WorkoutSessionDB;
 
 /**
@@ -660,6 +662,10 @@ public class TrackMeForm extends javax.swing.JFrame {
     private static WorkoutSessionDB workoutSessionDB = new WorkoutSessionDB();
     ArrayList<WorkoutSession> sessions = workoutSessionDB.getAll();
     
+    private static ExerciseTypeDB exerciseTypeDB = new ExerciseTypeDB();
+    ArrayList<ExerciseType> exerciseTypes = exerciseTypeDB.getAll();
+
+    
     private static int rb_exe_type = 1; // Cardio is selected by default
     private static Exercise selectedExercise;
     private static WorkoutSession selectedSession;
@@ -701,7 +707,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         
         try {
             for (Exercise e: exercises) {
-                exercisesTableModel.addRow(new Object[]{e.getName(), e.getTypeID()});
+                exercisesTableModel.addRow(new Object[]{e.getName(), exerciseTypes.get(e.getTypeID()-1).getTypeName()});
             }
         } catch (Exception e) {
             e.printStackTrace();
