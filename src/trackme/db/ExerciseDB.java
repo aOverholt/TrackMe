@@ -34,8 +34,8 @@ public class ExerciseDB implements DAO<Exercise>  {
      * <h2>When is it called?</h2>
      * When you want to get the name of an exercise by using the exerciseID
      * <br><br>
-     * <h2>What does it do?</h2>
-     * Returns a string containing the Exercise Name
+     * @param id the id of the exercise
+     * @return a string containing the Exercise Name
      */
     public String getName(int id) {
         String sql = "SELECT ExerciseName "
@@ -63,8 +63,7 @@ public class ExerciseDB implements DAO<Exercise>  {
      * <h2>When is it called?</h2>
      * When you want to get a list of all the exercises in the database
      * <br><br>
-     * <h2>What does it do?</h2>
-     * Gets a list of all the exercises in the database
+     * @return a list of all the exercises in the database
      */
     @Override
     public ArrayList<Exercise> getAll() {
@@ -93,8 +92,9 @@ public class ExerciseDB implements DAO<Exercise>  {
      * <h2>When is it called?</h2>
      * When you want to add an exercise to the database
      * <br><br>
-     * <h2>What does it do?</h2>
-     * Adds an exercise to the database
+     * @param name The name of the Exercise
+     * @param type The Id of the Exercise type (Cardio, BodyWeight, Resistance)
+     * @return True if successful, False if it fails
      */
     public boolean add(String name, int type) {
         String sql = "INSERT INTO Exercises (ExerciseName, TypeID) "
@@ -115,8 +115,8 @@ public class ExerciseDB implements DAO<Exercise>  {
      * <h2>When is it called?</h2>
      * When you want to update an exercise in the database
      * <br><br>
-     * <h2>What does it do?</h2>
-     * Updates an exercise that's already in the database
+     * @param e An Exercise object
+     * @return True if successful, False if it fails
      */
     @Override
     public boolean update(Exercise e) {
@@ -140,8 +140,8 @@ public class ExerciseDB implements DAO<Exercise>  {
      * <h2>When is it called?</h2>
      * When you want to delete an exercise from the database
      * <br><br>
-     * <h2>What does it do?</h2>
-     * Deletes an exercise that's already in the database
+     * @param e An Exercise object
+     * @return True if successful, False if it fails
      */
     @Override
     public boolean delete(Exercise e) {

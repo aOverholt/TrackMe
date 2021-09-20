@@ -732,13 +732,13 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     ////////////////////////////////////////////////////////////////////////////////// VARIABLES
     
-    private static ExerciseDB exerciseDB = new ExerciseDB();
+    private static final ExerciseDB exerciseDB = new ExerciseDB();
     ArrayList<Exercise> exercises = exerciseDB.getAll();
     
-    private static WorkoutSessionDB workoutSessionDB = new WorkoutSessionDB();
+    private static final WorkoutSessionDB workoutSessionDB = new WorkoutSessionDB();
     ArrayList<WorkoutSession> sessions = workoutSessionDB.getAll();
     
-    private static ExerciseTypeDB exerciseTypeDB = new ExerciseTypeDB();
+    private static final ExerciseTypeDB exerciseTypeDB = new ExerciseTypeDB();
     ArrayList<ExerciseType> exerciseTypes = exerciseTypeDB.getAll();
 
     
@@ -799,17 +799,13 @@ public class TrackMeForm extends javax.swing.JFrame {
         DefaultTableModel exercisesTableModel = (DefaultTableModel) tbl_Exercises.getModel();
         exercisesTableModel.setRowCount(0);
         
-        try {
-            for (Exercise e: exercises) {
+        exercises.forEach(e -> {
                 exercisesTableModel.addRow(new Object[]{e.getName(), exerciseTypes.get(e.getTypeID()-1).getTypeName()});
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        int exercisesRowNum = exercisesTableModel.getRowCount();
+        });
         
         // Makes the table look nicer by having the white rows fill out the visible
         // part instead of having grey space
+        int exercisesRowNum = exercisesTableModel.getRowCount();
         while (exercisesRowNum < 16){
             exercisesTableModel.addRow(new Object[] {"",""});
             exercisesRowNum++;
@@ -822,21 +818,16 @@ public class TrackMeForm extends javax.swing.JFrame {
         DefaultTableModel sessionsTableModel = (DefaultTableModel) tbl_Sessions.getModel();
         sessionsTableModel.setRowCount(0);
         
-        try {
-            for (WorkoutSession s: sessions) {
-                sessionsTableModel.addRow(
-                        new Object[]{
-                            s.getDate(), s.getExerciseName(), s.getDuration(), s.getDistance(), 
-                            s.getAverageHeartRate(), s.getBodyWeight(), s.getWeight(), s.getSets(), s.getReps()
-                        });
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        int sessionsRowNum = sessionsTableModel.getRowCount();
+        sessions.forEach(s -> {
+            sessionsTableModel.addRow(
+                    new Object[]{s.getDate(), s.getExerciseName(), s.getDuration(), s.getDistance(),
+                        s.getAverageHeartRate(), s.getBodyWeight(), s.getWeight(), s.getSets(), s.getReps()
+                    });
+        });
         
         // Makes the table look nicer by having the white rows fill out the visible
         // part instead of having grey space
+        int sessionsRowNum = sessionsTableModel.getRowCount();
         while (sessionsRowNum < 13){
             sessionsTableModel.addRow(new Object[] {"","","","","","","","",""});
             sessionsRowNum++;
@@ -861,6 +852,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         txt_sets.setText("");
         txt_reps.setText("");
     }
+    
     
     
     
@@ -1022,6 +1014,18 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     ///////////////////  Validation
     
+    /**
+     * <h2>When is it called?</h2>
+     * When the "Add" or "Update" buttons are clicked in the Exercises tab
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * <ol>
+     *  <li>Ensures that the user entered data</li>
+     *  <li>Ensures that the data is unique</li>
+     * </ol>
+     * @param name The exercise name
+     * @return True if data is valid, False if invalid
+     */
     private boolean validateExercise(String name) {
         boolean valid = true;
         
@@ -1050,6 +1054,7 @@ public class TrackMeForm extends javax.swing.JFrame {
     
     
     
+    
     ////////////////////////////////////////  WORKOUT SESSION SPECIFIC METHODS
     
     /**
@@ -1065,7 +1070,6 @@ public class TrackMeForm extends javax.swing.JFrame {
      * </ol>
      */
     private void addSession() {
-        boolean valid = true;
         
         // Collect data and store in Variables
         String date = txt_date.getText();
@@ -1079,8 +1083,8 @@ public class TrackMeForm extends javax.swing.JFrame {
         
         // get the selected exercise's id
         int selectedIndex = cmboBx_exerciseName.getSelectedIndex();
-        Exercise selectedExercise = exercises.get(selectedIndex);
-        int exerciseId = selectedExercise.getExerciseID();
+        Exercise ex = exercises.get(selectedIndex);
+        int exerciseId = ex.getExerciseID();
         
         // Create a WorkoutSession object
         WorkoutSession ws = new WorkoutSession(date, exerciseId, duration, bodyweight, avgHR, distance, weight, sets, reps);
@@ -1154,8 +1158,8 @@ public class TrackMeForm extends javax.swing.JFrame {
         
         // get the selected exercise's id
         int selectedIndex = cmboBx_exerciseName.getSelectedIndex();
-        Exercise selectedExercise = exercises.get(selectedIndex);
-        int exerciseId = selectedExercise.getExerciseID();
+        Exercise ex = exercises.get(selectedIndex);
+        int exerciseId = ex.getExerciseID();
         
         
         // Check that a name was entered, then try to add to database
@@ -1202,6 +1206,7 @@ public class TrackMeForm extends javax.swing.JFrame {
         clear();
     }
 
+    
     ///////////////////  Validation
     
     

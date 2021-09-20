@@ -27,6 +27,13 @@ public class ExerciseTypeDB implements DAO<ExerciseType> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * <h2>When is it called?</h2>
+     * When you want to get a list of all the exercise types in the database
+     * <br><br>
+     * <h2>What does it do?</h2>
+     * @return a list of all the exercise types in the database
+     */
     @Override
     public ArrayList<ExerciseType> getAll() {
         String sql = "SELECT TypeID, ExerciseType "
